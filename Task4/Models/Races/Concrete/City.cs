@@ -23,10 +23,14 @@ public class City : Race
             if (bolidIsFinished)
             {
                 OnRaceFinished(bolidRaceEventArgs);
+                Console.WriteLine($"{bolidRaceEventArgs.DriverName} finished with a time of {bolidRaceEventArgs.RaceTime:hh\\:mm\\:ss}");
+                Thread.Sleep(300);
             }
             else
             {
                 OnRaceFailed(bolidRaceEventArgs);
+                Console.WriteLine($"{bolidRaceEventArgs.DriverName} retired from the race");
+                Thread.Sleep(300);
             }
         }
     }

@@ -192,11 +192,18 @@ var bolidResultTable = new List<RaceEventArgs>();
 var bolidFinished = new List<RaceEventArgs>();
 var bolidFailed = new List<RaceEventArgs>();
 
+Console.WriteLine("List of drivers:");
+Console.WriteLine("NO     DRIVER              CAR       TEAM");
+foreach (var e in bolidCars)
+{
+    Console.WriteLine($"{e.CarNumber, -7}{e.DriverName, -20}{e.CarName, -10}{e.Team}");
+}
+
 var cityRace = new City { NameRace = "City Race" };
 cityRace.RaceFinished += OnRaceFinished;
 cityRace.RaceFailed += OnRaceFailed;
 
-Console.WriteLine("Starting City Race...");
+Console.WriteLine("\nStarting City Race...");
 cityRace.StartRace(bolidCars);
 
 bolidResultTable.AddRange(bolidFinished.OrderBy(r => r.RaceTime).ToList());
@@ -204,6 +211,7 @@ bolidResultTable.AddRange(bolidFailed);
 
 int position = 1; // не подобається можливо ти знаєш як можна зберігши функціонал позбутися зміної?
 
+Console.WriteLine($"\nList of results \"{cityRace.NameRace}\":");
 Console.WriteLine("POS    NO     DRIVER              CAR       TIME");
 foreach (var e in bolidResultTable)
 {
@@ -228,6 +236,7 @@ bolidResultTable.AddRange(bolidFailed);
 
 position = 1;
 
+Console.WriteLine($"\nList of results \"{rallyRace.NameRace}\":");
 Console.WriteLine("POS    NO     DRIVER              CAR       TIME");
 foreach (var e in bolidResultTable)
 {
@@ -235,6 +244,7 @@ foreach (var e in bolidResultTable)
     position++;
 }
 
+Console.ReadKey();
 
 void OnRaceFinished(object? sender, RaceEventArgs e)
 {
